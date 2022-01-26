@@ -46,9 +46,6 @@ after the fetch request is completed.
 
 ```js
 const renderData = (data) => {
-    
-
-
     let html = ""
 
     html += `
@@ -60,13 +57,33 @@ const renderData = (data) => {
             </div>
             <p class="desc">${desc_text} </h1> 
         </div> 
-        
+
         `
     }
 
     document.getElementById("content").innerHTML = html
 ```
 
-```js
+## Putting the Subway Icons on the Results
 
+In order to display the result with the corresponding subway icons, the text must be parsed before it renders to the page. In the javascript, that is taken care by using regex and replacing the selected text into an image of the appropriate icon.
+
+```js
+const filteredText = (text) => {  
+    let reg = /\[(.*?)\]/gm
+    let arr = text.match(reg)
+    let arr = reg.exec(text)
+    let newText= text
+
+    if (arr2 != null) {
+        for (let letter of arr) {
+            let train = letter.charAt(1).toLowerCase()
+            newText = newText.replace(letter, `<img src="./icons/${train}.svg" id="icon"/>`)
+        }
+    } else {
+        return text
+    } 
+
+    return newText
+}
 ```
