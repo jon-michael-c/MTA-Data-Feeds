@@ -1,9 +1,9 @@
 const url = "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts.json"
-const KEY = "y0502zWxdl9dgYO1NVYAQ17J3oKghY5q3SibNxp1"
+const KEY = "RQ7UJ06Y9276GVIVthnwR3vptADw64Jf3m4WdivN"
 
 const myHeaders = new Headers({
     'Content-Type':'application/json',
-    'x-api-key':'4c4ufDTKBH4ehazHJh96s9XwPu0zr6zv5AWwlYVw'
+    'x-api-key': KEY
 })
 
 fetch(url, {
@@ -55,8 +55,18 @@ const renderData = (data) => {
 
 
         let header_text = filteredText(item.alert.header_text.translation[0].text)
-        let desc_text =  filteredText(item.alert.description_text.translation[0].text)
         let updated = getTime(item.alert.active_period[0].start)
+        let desc_text = ""
+
+        if(item.alert.hasOwnProperty('description_text')) {
+
+             desc_text =  filteredText(item.alert.description_text.translation[0].text)
+        } else {
+             desc_text = "No description available"
+        }
+        /* let desc_text = 2
+        let updated = 3 */
+
         html += `
 
             <div class="card">
@@ -72,4 +82,3 @@ const renderData = (data) => {
 
     document.getElementById("content").innerHTML = html
 }
-
