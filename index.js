@@ -1,6 +1,17 @@
 const url =
   "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts.json";
 const KEY = "RQ7UJ06Y9276GVIVthnwR3vptADw64Jf3m4WdivN";
+const darkMode = false;
+
+const setTheme = () => {
+  if (!darkMode) {
+    $("body").addClass("dark");
+    darkMode = true;
+  } else {
+    $("body").removeClass("dark");
+    darkMode = false;
+  }
+};
 
 const myHeaders = new Headers({
   "Content-Type": "application/json",
@@ -34,7 +45,7 @@ const alert_status = (isActive) => {
 const renderData = (data) => {
   let html = "";
 
-  for (i = 0; i < 20; i++) {
+  for (i = 0; i < 5; i++) {
     let item = data[i];
     const filteredText = (text) => {
       let reg = /\[(.*?)\]/gm;

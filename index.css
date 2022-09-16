@@ -3,6 +3,20 @@ body {
   padding: 0;
 }
 
+.body-shade {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.712);
+  z-index: 1;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
 nav {
   margin-left: 0.5em;
   padding: 0.5em;
@@ -11,6 +25,16 @@ nav {
   display: flex;
   justify-content: last baseline;
   align-items: center;
+}
+
+.main {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header"
+    "right right main main main main"
+    "stations stations main main main main";
+  gap: 10px;
+  padding: 10px;
 }
 
 #mta-logo {
@@ -22,9 +46,24 @@ nav {
   vertical-align: text-bottom;
 }
 
+.alerts {
+  grid-area: header;
+}
+
 #content {
-  max-width: 75%;
-  margin: auto;
+  max-height: 30vh;
+  overflow: auto;
+}
+
+.dash {
+  grid-area: main;
+  padding: 20px 0;
+  min-width: 60vh;
+}
+
+.right {
+  grid-area: right;
+  padding: 20px 0;
 }
 
 .card {
@@ -47,8 +86,6 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100%;
   transition: all 2s ease;
 }
 
@@ -82,6 +119,41 @@ nav {
   background-color: #fecaca;
   font-size: 1rem;
   padding: 7px;
+}
+
+#trains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.train-icon {
+  width: 2rem;
+}
+
+.stations-container {
+  grid-area: stations;
+}
+.stations {
+  max-height: 50vh;
+  overflow: auto;
+}
+.station-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d1d5db;
+  padding: 10px;
+  margin: 5px 0 5px 0;
+  cursor: pointer;
+}
+
+.on {
+  opacity: 1;
+}
+
+.off {
+  opacity: 0.5;
 }
 
 @keyframes spin {

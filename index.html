@@ -5,23 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
   </head>
   <body>
+    <div class="body-shade"></div>
+    <div class="station-pop"></div>
     <nav>
       <img
         src="http://www.nytransitmuseum.org/wp-content/uploads/2016/04/mta_nyc_logo_svg1.png"
         id="mta-logo"
       />
       <div class="title"><h1>MTA Subway Alerts Feed</h1></div>
+      <div class="theme-switch">
+        <button class="theme-btn" onclick="setTheme()">switch</button>
+      </div>
     </nav>
 
-    <div id="content">
-      <div class="loading">
-        <div class="load"></div>
+    <main class="main">
+      <div class="alerts">
+        <h2>Recent Alerts</h2>
+        <div id="content">
+          <div class="loading">
+            <div class="load"></div>
+          </div>
+        </div>
       </div>
-    </div>
+      <div class="dash">
+        <h1>Schedule</h1>
+        <div class="times"></div>
+      </div>
+      <div class="stations-container">
+        <h1>Stations</h1>
+        <div class="stations"></div>
+      </div>
+      <div class="right">
+        <h1>Trains</h1>
+        <div id="trains"></div>
+      </div>
+    </main>
 
     <script src="./index.js"></script>
+    <script src="./icons.js"></script>
+    <script src="./stations.js"></script>
+    <script src="./utils.js"></script>
   </body>
 </html>
