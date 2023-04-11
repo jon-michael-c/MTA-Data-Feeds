@@ -18,27 +18,32 @@ body {
 }
 
 nav {
-  margin-left: 0.5em;
-  padding: 0.5em;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.select {
   width: 100%;
-  background-color: white;
+  background-color: #c2ddff;
+  padding: 10px;
+}
+
+.select-card {
+  background: none;
+  border: none;
+}
+
+.select-header {
   display: flex;
-  justify-content: last baseline;
   align-items: center;
+  justify-content: space-between;
 }
 
 .main {
-  display: grid;
-  grid-template-areas:
-    "header header header header header header"
-    "right right main main main main"
-    "stations stations main main main main";
-  gap: 10px;
   padding: 10px;
 }
 
 #mta-logo {
-  max-width: 100px;
+  max-width: 65px;
 }
 
 #icon {
@@ -46,13 +51,7 @@ nav {
   vertical-align: text-bottom;
 }
 
-.alerts {
-  grid-area: header;
-}
-
 #content {
-  max-height: 30vh;
-  overflow: auto;
 }
 
 .dash {
@@ -129,6 +128,9 @@ nav {
 
 .train-icon {
   width: 2rem;
+}
+.train-icon:hover {
+  cursor: pointer;
 }
 
 .stations-container {
