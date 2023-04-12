@@ -52,6 +52,18 @@ const alert_status = (isActive) => {
   }
 };
 
+const getAlertIcon = (type) => {
+  if (type == "Delays") {
+    return `<i class="fa fa-clock"></i>`;
+  } else if (type == "Express to Local") {
+    return `<i class="fa solid fa-route"></i>`;
+  } else if (type == "Some Reroutes") {
+    return `<i class="fa fa-shuffle"></i>`;
+  } else {
+    return `<i class="fa fa-circle-exclamation"></i>`;
+  }
+};
+
 const getDiff = (timestamp2, timestamp1) => {
   const date1 = new Date(timestamp1); // Convert to Date object
   const date2 = new Date(timestamp2); // Convert to Date object
@@ -125,6 +137,9 @@ const renderData = (data, trains) => {
       } else {
         desc_text = "No description available";
       }
+
+      let alert_type = item.alert["transit_realtime.mercury_alert"].alert_type;
+
       /* let desc_text = 2
         let updated = 3 */
 
@@ -133,11 +148,12 @@ const renderData = (data, trains) => {
             <div class="card">
                 <div class="card-top">
                     <p class="time">${created}</p>
+                    <p>${getAlertIcon(alert_type)} ${alert_type}</p>
                 </div>
                 <div class="card-head">
                     <h1 class="header">${header_text}</h1>
                 </div>
-                <p class="desc">${desc_text}</h1> 
+                <p class="desc">${desc_text}</p> 
             </div> 
         
         `;
@@ -145,7 +161,8 @@ const renderData = (data, trains) => {
   } else {
     html = `
       <div class="nothing">
-      <h1>No active alerts</h1>     
+        <h1>No active alerts</h1>     
+        <img src="./no-alerts.svg" alt="No Alerts" id="no-alerts"/>
       </div>
     `;
   }
@@ -209,12 +226,14 @@ const renderData = (data, trains) => {
       }
       /* let desc_text = 2
         let updated = 3 */
+      let alert_type = item.alert["transit_realtime.mercury_alert"].alert_type;
 
       html1 += `
 
             <div class="card">
                 <div class="card-top">
                     <p class="time">${created}</p>
+                    <p>${getAlertIcon(alert_type)} ${alert_type}</p>
                 </div>
                 <div class="card-head">
                     <h1 class="header">${header_text}</h1>

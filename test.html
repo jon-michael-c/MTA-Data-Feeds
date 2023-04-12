@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bubble Sort Visualization</title>
+    <style>
+      /* Basic styling for the page */
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Styling for the array visualization */
+      .array-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .array-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        margin: 0 5px;
+        background-color: #0077cc;
+        color: white;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bubble Sort Visualization</h1>
+
+    <div class="array-container"></div>
+
+    <button onclick="startSorting()">Sort</button>
+
+    <script>
+      // Define the array to be sorted
+      const arrayToSort = [4, 7, 1, 9, 2, 6, 8, 3, 5];
+
+      // Get the array container element from the page
+      const arrayContainer = document.querySelector(".array-container");
+
+      // Function to render the array on the page
+      function renderArray(array) {
+        // Clear the existing array items from the container
+        arrayContainer.innerHTML = "";
+
+        // Loop through the array and create a div element for each item
+        array.forEach((item) => {
+          const itemDiv = document.createElement("div");
+          itemDiv.classList.add("array-item");
+          itemDiv.textContent = item;
+          arrayContainer.appendChild(itemDiv);
+        });
+      }
+
+      // Function to perform one step of the bubble sort algorithm
+      function bubbleSortStep(array, index) {
+        // If we're at the end of the array, we're done with this pass
+        if (index >= array.length - 1) {
+          return false;
+        }
+
+        // If the current item is greater than the next item, swap them
+        if (array[index] > array[index + 1]) {
+          const temp = array[index];
+          array[index] = array[index + 1];
+          array[index + 1] = temp;
+          return true;
+        }
+
+        // Otherwise, no swap is needed
+        return false;
+      }
+
+      // Function to start the sorting process
+      function startSorting() {
+        // Render the initial array
+        renderArray(arrayToSort);
+
+        // Start the sorting process
+        let swapped = true;
+        let pass = 0;
+
+        const sortInterval = setInterval(() => {
+          // Perform one pass of the bubble sort algorithm
+          swapped = false;
+          for (let i = 0; i < arrayToSort.length - pass - 1; i++) {
+            if (bubbleSortStep(arrayToSort, i)) {
+              swapped = true;
+            }
+          }
+
+          // Render the updated array
+          renderArray(arrayToSort);
+
+          // If no swaps were made on this pass, we're done
+          if (!swapped) {
+            clearInterval(sortInterval);
+          }
+
+          pass++;
+        }, 500);
+      }
+    </script>
+  </body>
+</html>

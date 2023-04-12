@@ -104,6 +104,19 @@ nav {
   justify-content: space-between;
 }
 
+.nav-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-left: 10px;
+}
+
+.nav-head h1 {
+  font-weight: bold;
+}
+
 .active {
   border: 1px solid #86efac;
   border-radius: 15px;
@@ -156,6 +169,17 @@ nav {
 
 .off {
   opacity: 0.5;
+}
+
+.nothing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#no-alerts {
+  width: 20%;
 }
 
 @keyframes spin {
